@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:component-scan base-package="com.pinnet"/>
+    <bean class="com.pinnet.aware.TestBeanAware"/>
+    <bean class="com.pinnet.aware.TestApplicationContextAware"/>
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>aware.properties</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="applicationEventMulticaster" class="org.springframework.context.event.SimpleApplicationEventMulticaster">
+        <property name="taskExecutor" ref="executor"/>
+    </bean>
+
+    <bean id="executor" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+        <property name="corePoolSize" value="5"/>
+        <property name="maxPoolSize" value="60"/>
+        <property name="keepAliveSeconds" value="60"/>
+        <property name="queueCapacity" value="3000"/>
+    </bean>
+    <bean class="com.pinnet.aware.TestEmbeddedValueResolverAware"/>
+    <bean class="com.pinnet.aware.TestApplicationEventPublisherAware"/>
+    <bean class="com.pinnet.aware.TestListener"/>
+</beans>

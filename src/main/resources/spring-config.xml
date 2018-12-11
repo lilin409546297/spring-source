@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:pinnet="http://www.pinnet.com/schema/user" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.pinnet.com/schema/user http://www.pinnet.com/schema/user.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+    <pinnet:user id="user1" name="name1" age="age1"/>
+    <pinnet:user id="user2" name="name2" age="age2"/>
+    <pinnet:user id="user3" name="name3" age="age3"/>
+    <aop:aspectj-autoproxy/>
+    <bean class="com.pinnet.aop.AspectHandler"/>
+    <bean id="aspectTest" class="com.pinnet.aop.AspectTest"/>
+</beans>
