@@ -85,7 +85,10 @@ public class FileUtils {
         //不为空进入循环
         while (nextEntry != null) {
             String name = nextEntry.getName();
-            File file = new File(outPath+name);
+            File file = new File(outPath, name);
+            if (!file.toPath().normalize().startsWith(outPath)) {
+                throw new IOException("Bad zip entry");
+            }
             //如果是目录，创建目录
             if (name.endsWith("/")) {
                 file.mkdir();
